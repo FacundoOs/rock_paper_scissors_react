@@ -1,12 +1,13 @@
-describe("User can interact with the app", () => {
-  it("succesfully render", () => {
+describe("User can navigate the app", () => {
+  beforeEach(() => {
     cy.visit("http://localhost:3000");
-    cy.get("#rock").should("contain", "rock");
-    cy.get("#paper").should("contain", "paper");
-    cy.get("#scissors").should("contain", "scissors");
-    cy.get("#fight").should("contain", "Fight");
   });
-  it("user can set a nickname"), () => {
-    
-  }
-});
+  it("User can see a render page", () => {
+    cy.get("#cy-title").should("contain", "Rock, Paper, Scissors");
+    cy.get("#cy-option").should("contain", "Choose game mode");
+    cy.get('#cy-userCpu').contains('User vs CPU');
+    cy.get('#cy-userUser').contains('User vs User');
+  });
+
+  
+})
