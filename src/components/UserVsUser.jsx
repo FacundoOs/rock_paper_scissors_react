@@ -2,16 +2,26 @@ import React, { Component } from "react";
 import rock from "../assets/rock.png";
 import paper from "../assets/paper.jpg";
 import scissor from "../assets/scissor.jpg";
+import showWinner from "../modules/showWinner";
 
 class UserVsUser extends Component {
   state = {
     userWeapon: "",
     user2Weapon: "",
+    winner: "",
   };
-  render() {
-    const userWeapon = this.state.userWeapon;
-    const user2Weapon = this.state.user2Weapon;
 
+  userVsUser = async () => {
+    let winner = await showWinner(
+      this.state.userWeapon,
+      this.state.user2Weapon
+    );
+    this.setState({
+      winner: winner,
+    });
+  };
+
+  render() {
     return (
       <div>
         <div>
@@ -35,7 +45,7 @@ class UserVsUser extends Component {
             <img src={scissor} alt="scissor" width="100px" />
           </button>
         </div>
-        <h2 id="cy-userWeapon">User1 weapon: {userWeapon}</h2>
+        <h2 id="cy-userWeapon">User1 weapon: {this.state.userWeapon}</h2>
         <div>
           <div>
             <button
@@ -56,18 +66,17 @@ class UserVsUser extends Component {
             >
               <img src={scissor} alt="scissor" width="100px" />
             </button>
-            <h2 id="cy-user2Weapon">User2 weapon: {user2Weapon}</h2>
-
+            <h2 id="cy-user2Weapon">User2 weapon: {this.state.user2Weapon}</h2>
             <div>
-              <button id="fight" onClick={() => this.userVsUser()}>
+              <button id="cy-fight" onClick={() => this.userVsUser()}>
                 Fight
               </button>
             </div>
+            <h2 id="cy-winner">The winner is: {this.state.winner}</h2>
           </div>
         </div>
       </div>
     );
   }
 }
-
 export default UserVsUser;
