@@ -1,6 +1,6 @@
 describe("User can start the battle", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit("/");
   });
 
   it("User can see the result vs User2", () => {

@@ -2,20 +2,70 @@ import React, { Component } from "react";
 import UserVsCpu from "./components/UserVsCpu";
 import UserVsUser from "./components/UserVsUser";
 import HowToPlayGuide from "./components/HowToPlayGuide";
+import LoginForm from "./components/LogInForm";
+import { authenticate } from "./modules/auth";
 
 class App extends Component {
   state = {
     showUserVsCpu: false,
     showUserVsUser: false,
-    showUserGuide: false
+    showUserGuide: false,
+    renderLoginForm: false,
+    authenticated: false,
+    message: "",
+  };
+
+  onChangeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onLogin = async (e) => {
+    e.preventDefault();
+    const response = await authenticate(
+      e.target.email.value,
+      e.target.password.value
+    );
+    if (response.authenticated) {
+      this.setState({ authenticated: true });
+    } else {
+      this.setState({ message: response.message, renderLoginForm: false });
+    }
   };
 
   render() {
     const showUserVsCpu = this.state.showUserVsCpu;
     const showUserVsUser = this.state.showUserVsUser;
 
+    const { renderLoginForm, authenticated, message } = this.state;
+    let renderLogin;
+    switch (true) {
+      case renderLoginForm && !authenticated:
+        renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
+        break;
+      case !renderLoginForm && !authenticated:
+        renderLogin = (
+          <>
+            <button
+              id="login"
+              onClick={() => this.setState({ renderLoginForm: true })}
+            >
+              Login
+            </button>
+            <p>{message}</p>
+          </>
+        );
+        break;
+      case authenticated:
+        renderLogin = (
+          <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+        );
+        break;
+        default:
+          break;
+    }
     return (
       <>
+        {renderLogin}
         <div>
           <h1 id="cy-title">Rock, Paper, Scissors</h1>
         </div>
@@ -41,11 +91,13 @@ class App extends Component {
             >
               User vs User
             </button>
-            <button onClick={() =>
+            <button
+              onClick={() =>
                 this.setState({ showUserGuide: !this.state.showUserGuide })
-              }>
-            HowToPlayGuide 
-        </button>
+              }
+            >
+              HowToPlayGuide
+            </button>
           </div>
         )}
         <div>
@@ -60,13 +112,13 @@ class App extends Component {
               <UserVsUser showUserVsUser={showUserVsUser} />
             </div>
           )}
-        {this.state.showUserGuide && (
+          {this.state.showUserGuide && (
             <div>
               <HowToPlayGuide />
             </div>
           )}
         </div>
-        
+
         {(this.state.showUserVsCpu || this.state.showUserVsUser) && (
           <button
             onClick={() =>

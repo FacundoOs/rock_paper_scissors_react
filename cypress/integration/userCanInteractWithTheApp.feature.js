@@ -1,6 +1,6 @@
 describe("User can navigate the app", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit("/");
   });
   it("User can see a render page", () => {
     cy.get("#cy-title").should("contain", "Rock, Paper, Scissors");
