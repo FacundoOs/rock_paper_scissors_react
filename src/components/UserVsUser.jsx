@@ -68,9 +68,12 @@ class UserVsUser extends Component {
             </button>
             <h2 id="cy-user2Weapon">User2 weapon: {this.state.user2Weapon}</h2>
             <div>
+
+              {(this.state.userWeapon && this.state.user2Weapon) &&(
               <button id="cy-fight" onClick={() => this.userVsUser()}>
                 Fight
               </button>
+              )}
             </div>
             <h2 id="cy-winner">The winner is: {this.state.winner}</h2>
           </div>

@@ -9,16 +9,26 @@ class UserVsCpu extends Component {
     userWeapon: "",
     cpuWeapon: "",
     winner: "",
+    user1Cont: 0
   };
 
-  cpuSelectWeapon = async () => {
+  cpuSelectWeapon = () => {
     const cpuOptions = ["rock", "paper", "scissor"];
-    let cpu = cpuOptions[Math.floor(Math.random() * 3)];
-    let winner = await showWinner(this.state.userWeapon, cpu);
-    this.setState({
-      cpuWeapon: cpu,
-      winner: winner,
-    });
+    let count = 0;
+    let gameInterval = setInterval(async () => {
+      count++;
+      this.setState({
+        cpuWeapon: cpuOptions[Math.floor(Math.random() * 3)],
+      });
+      if (count > 8) {
+        clearInterval(gameInterval);
+        this.setState({
+          winner: await showWinner(this.state.userWeapon, this.state.cpuWeapon),
+        });
+        
+      }
+    }, 100);
+ 
   };
 
   render() {
@@ -54,12 +64,15 @@ class UserVsCpu extends Component {
           />
           <h2 id="cy-cpuWeapon">Cpu weapon: {this.state.cpuWeapon}</h2>
 
-          <div>
-            <button id="cy-fight" onClick={() => this.cpuSelectWeapon()}>
-              Fight
-            </button>
-          </div>
+          {this.state.userWeapon && (
+            <div>
+              <button id="cy-fight" onClick={() => this.cpuSelectWeapon()}>
+                Fight
+              </button>
+            </div>
+          )}
           <h2 id="cy-winner">The winner is : {this.state.winner}</h2>
+          <h2>{this.state.user1Cont}</h2>
         </div>
       </div>
     );

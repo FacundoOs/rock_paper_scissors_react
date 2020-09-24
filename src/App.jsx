@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import UserVsCpu from "./components/UserVsCpu";
 import UserVsUser from "./components/UserVsUser";
+import HowToPlayGuide from "./components/HowToPlayGuide";
 
 class App extends Component {
   state = {
     showUserVsCpu: false,
     showUserVsUser: false,
+    showUserGuide: false
   };
 
   render() {
@@ -20,25 +22,32 @@ class App extends Component {
         <div>
           <h2 id="cy-option">Choose game mode</h2>
         </div>
-        <div>
-          <button
-            id="cy-userCpu"
-            onClick={() =>
-              this.setState({ showUserVsCpu: !this.state.showUserVsCpu })
-            }
-          >
-            User vs CPU
-          </button>
 
-          <button
-            id="cy-userUser"
-            async onClick={() => 
-              this.setState({ showUserVsUser: !this.state.showUserVsUser })
-            }
-          >
-            User vs User
-          </button>
-        </div>
+        {!this.state.showUserVsCpu && !this.state.showUserVsUser && (
+          <div>
+            <button
+              id="cy-userCpu"
+              onClick={() =>
+                this.setState({ showUserVsCpu: !this.state.showUserVsCpu })
+              }
+            >
+              User vs CPU
+            </button>
+            <button
+              id="cy-userUser"
+              onClick={() =>
+                this.setState({ showUserVsUser: !this.state.showUserVsUser })
+              }
+            >
+              User vs User
+            </button>
+            <button onClick={() =>
+                this.setState({ showUserGuide: !this.state.showUserGuide })
+              }>
+            HowToPlayGuide 
+        </button>
+          </div>
+        )}
         <div>
           {this.state.showUserVsCpu && (
             <div>
@@ -51,7 +60,22 @@ class App extends Component {
               <UserVsUser showUserVsUser={showUserVsUser} />
             </div>
           )}
+        {this.state.showUserGuide && (
+            <div>
+              <HowToPlayGuide />
+            </div>
+          )}
         </div>
+        
+        {(this.state.showUserVsCpu || this.state.showUserVsUser) && (
+          <button
+            onClick={() =>
+              this.setState({ showUserVsCpu: false, showUserVsUser: false })
+            }
+          >
+            Restart
+          </button>
+        )}
       </>
     );
   }
