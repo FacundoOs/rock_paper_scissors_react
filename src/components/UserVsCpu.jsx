@@ -9,7 +9,7 @@ class UserVsCpu extends Component {
     userWeapon: "",
     cpuWeapon: "",
     winner: "",
-    user1Cont: 0
+    user1Cont: 0,
   };
 
   cpuSelectWeapon = () => {
@@ -25,10 +25,8 @@ class UserVsCpu extends Component {
         this.setState({
           winner: await showWinner(this.state.userWeapon, this.state.cpuWeapon),
         });
-        
       }
     }, 100);
- 
   };
 
   render() {

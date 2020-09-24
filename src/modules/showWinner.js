@@ -1,5 +1,4 @@
 const showWinner = (weapon1, weapon2) => {
-  
   if (weapon1 === weapon2) {
     return "Tie";
   } else if (

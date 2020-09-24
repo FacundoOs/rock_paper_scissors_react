@@ -37,7 +37,6 @@ class UserVsUser extends Component {
           >
             <img src={paper} alt="paper" width="100px" />
           </button>
-
           <button
             id="scissors"
             onClick={() => this.setState({ userWeapon: "scissor" })}
@@ -68,11 +67,10 @@ class UserVsUser extends Component {
             </button>
             <h2 id="cy-user2Weapon">User2 weapon: {this.state.user2Weapon}</h2>
             <div>
-
-              {(this.state.userWeapon && this.state.user2Weapon) &&(
-              <button id="cy-fight" onClick={() => this.userVsUser()}>
-                Fight
-              </button>
+              {this.state.userWeapon && this.state.user2Weapon && (
+                <button id="cy-fight" onClick={() => this.userVsUser()}>
+                  Fight
+                </button>
               )}
             </div>
             <h2 id="cy-winner">The winner is: {this.state.winner}</h2>
