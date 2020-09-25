@@ -2,7 +2,7 @@
 
 ### I used pivotaltracker as an Agile tool. 
 A user story is an informal, general explanation of a software feature written from the perspective of the end user.
-[a link] (https://www.pivotaltracker.com/n/projects/2466637)
+[Pivotaltracker link](https://www.pivotaltracker.com/n/projects/2466637)
 
 # ROCK, PAPER, SCISSOR
 About this PR:
@@ -19,12 +19,12 @@ Although the game has a lot of complexity to it, the rules to play it are pretty
 
 
 ## For this project I used React v16.13.1 and Rails v6.0.3.
-- https://github.com/FacundoOs/rock_paper_scissors_react
-- https://github.com/FacundoOs/rock_paper_scissor_api
+- [Project in React](https://github.com/FacundoOs/rock_paper_scissors_react)
+- [Project in Rails](https://github.com/FacundoOs/rock_paper_scissor_api)
 
 
 ## Netlify as the web developer platform
-- https://rock-paper-scissor-facundo-osores.netlify.app/
+- [Visit the page](https://rock-paper-scissor-facundo-osores.netlify.app/)
 
 To login use:
 - user: user@mail.com
@@ -42,11 +42,6 @@ To login use:
 - gem 'pry-byebug'
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `yarn start`
 
