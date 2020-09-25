@@ -75,7 +75,7 @@ class UserVsCpu extends Component {
             <h2 id="cy-cpuWeapon">Cpu weapon: {this.state.cpuWeapon}</h2>
           </Grid.Column>
           <Grid.Column width={4} textAlign="center">
-            <Image
+            <Image id="cy-rock cy-paper cy-scissor"
               src={
                 this.state.cpuWeapon === "rock"
                   ? rock
