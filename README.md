@@ -22,7 +22,13 @@ Although the game has a lot of complexity to it, the rules to play it are pretty
 - https://github.com/FacundoOs/rock_paper_scissors_react
 - https://github.com/FacundoOs/rock_paper_scissor_api
 
+
+## Netlify as the web developer platform
 - https://rock-paper-scissor-facundo-osores.netlify.app/
+
+To login use:
+- user: user@mail.com
+- password: password
 
 
 ## For the test in React I used 
