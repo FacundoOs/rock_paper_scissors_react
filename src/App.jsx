@@ -4,6 +4,7 @@ import UserVsUser from "./components/UserVsUser";
 import HowToPlayGuide from "./components/HowToPlayGuide";
 import LoginForm from "./components/LogInForm";
 import { authenticate } from "./modules/auth";
+import { Menu, Button, Container, Grid, Card } from "semantic-ui-react";
 
 class App extends Component {
   state = {
@@ -13,6 +14,7 @@ class App extends Component {
     renderLoginForm: false,
     authenticated: false,
     message: "",
+    activeItem: "restart",
   };
 
   onChangeHandler = (e) => {
@@ -45,12 +47,15 @@ class App extends Component {
       case !renderLoginForm && !authenticated:
         renderLogin = (
           <>
-            <button
+            <Button
+              primary
               id="login"
               onClick={() => this.setState({ renderLoginForm: true })}
             >
+              {" "}
               Login
-            </button>
+            </Button>
+
             <p id="message">{message}</p>
           </>
         );
@@ -67,72 +72,96 @@ class App extends Component {
     }
     return (
       <>
-        {renderLogin}
-        <div>
-          <h1 id="cy-title">Rock, Paper, Scissors</h1>
-        </div>
-        {this.state.authenticated && (
-          <div>
-            <h2 id="cy-option">Choose game mode</h2>
-          </div>
-        )}
-        {!this.state.showUserVsCpu &&
-          !this.state.showUserVsUser &&
-          this.state.authenticated && (
-            <div>
-              <button
-                id="cy-userCpu"
+        <Container>
+          <Menu size="small" inverted>
+            {(this.state.showUserVsCpu || this.state.showUserVsUser) && (
+              <Menu.Item
+                name="Restart"
+                active={this.state.activeItem === "restart"}
                 onClick={() =>
-                  this.setState({ showUserVsCpu: !this.state.showUserVsCpu })
+                  this.setState({ showUserVsCpu: false, showUserVsUser: false })
                 }
-              >
-                User vs CPU
-              </button>
-              <button
-                id="cy-userUser"
-                onClick={() =>
-                  this.setState({ showUserVsUser: !this.state.showUserVsUser })
-                }
-              >
-                User vs User
-              </button>
-
-              <button
+              />
+            )}
+            <Menu.Menu position="right">
+              <Menu.Item
+                name="HowToPlayGuide"
+                active={this.state.activeItem === "messages"}
                 onClick={() =>
                   this.setState({ showUserGuide: !this.state.showUserGuide })
                 }
-              >
-                HowToPlayGuide
-              </button>
-            </div>
-          )}
-        <div>
-          {this.state.showUserVsCpu && (
-            <div>
-              <UserVsCpu showUserVsCpu={showUserVsCpu} />
-            </div>
-          )}
-          {this.state.showUserVsUser && (
-            <div>
-              <UserVsUser showUserVsUser={showUserVsUser} />
-            </div>
-          )}
-        </div>
-        {this.state.showUserGuide && (
-          <div>
-            <HowToPlayGuide />
-          </div>
-        )}
+              />
+              <Menu.Item>{renderLogin}</Menu.Item>
+            </Menu.Menu>
+          </Menu>
+          <div class="backgroundImage">
+            <Grid textAlign="center">
+              <h1> Rock, Paper, Scissors</h1>
+            </Grid>
+            <Grid textAlign="center">
+              {!this.state.showUserVsCpu &&
+                !this.state.showUserVsUser &&
+                this.state.authenticated && (
+                  <Card>
+                    <Card.Content>
+                      <Card.Header textAlign="center">
+                        {this.state.authenticated && (
+                          <h2 id="cy-option">Choose game mode</h2>
+                        )}
+                      </Card.Header>
+                    </Card.Content>
 
-        {(this.state.showUserVsCpu || this.state.showUserVsUser) && (
-          <button
-            onClick={() =>
-              this.setState({ showUserVsCpu: false, showUserVsUser: false })
-            }
-          >
-            Restart
-          </button>
-        )}
+                    <Card.Content extra>
+                      <div className="ui two buttons">
+                        <Button
+                          basic
+                          color="green"
+                          id="cy-userCpu"
+                          onClick={() =>
+                            this.setState({
+                              showUserVsCpu: !this.state.showUserVsCpu,
+                            })
+                          }
+                        >
+                          User vs CPU
+                        </Button>
+                        <Button
+                          basic
+                          color="red"
+                          id="cy-userUser"
+                          onClick={() =>
+                            this.setState({
+                              showUserVsUser: !this.state.showUserVsUser,
+                            })
+                          }
+                        >
+                          User vs User
+                        </Button>
+                      </div>
+                    </Card.Content>
+                  </Card>
+                )}
+            </Grid>
+            <div>
+              {this.state.showUserVsCpu && (
+                <div>
+                  <UserVsCpu showUserVsCpu={showUserVsCpu} />
+                </div>
+              )}
+              {this.state.showUserVsUser && (
+                <div>
+                  <UserVsUser showUserVsUser={showUserVsUser} />
+                </div>
+              )}
+            </div>
+
+            {this.state.showUserGuide && (
+              <div>
+                <HowToPlayGuide />
+              </div>
+            )}
+          </div>
+        </Container>
       </>
     );
   }

@@ -1,8 +1,10 @@
 import React from "react";
+import { Container, Segment } from "semantic-ui-react";
 
 const HowToPlayGuide = () => {
   return (
-    <div>
+    <Container>
+    <Segment inverted >
       <h1>How to Play???</h1>
       <h2>Why is Rock Paper Scissors played?</h2>
       <p>
@@ -22,7 +24,8 @@ const HowToPlayGuide = () => {
         The outcome of the game is determined by 3 simple rules: Rock wins
         against scissors. Scissors win against paper. Paper wins against rock.
       </p>
-    </div>
+      </Segment>
+      </Container>
   );
 };
 
