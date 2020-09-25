@@ -17,7 +17,7 @@ describe("User can log in", () => {
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
-      cy.get('button').contains('Submit').click();
+      cy.get('button').contains('Login').click();
     });
     cy.get("#message").should("contain", "Hi user@mail.com");
   });
@@ -36,7 +36,7 @@ describe("User can log in", () => {
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("wrongpassword");
-      cy.get('button').contains('Submit').click()
+      cy.get('button').contains('Login').click()
     });
     cy.get("#message").should("contain", "Invalid login credentials. Please try again.");
   });

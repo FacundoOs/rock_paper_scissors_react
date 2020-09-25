@@ -96,7 +96,7 @@ class App extends Component {
           </Menu>
           <div class="backgroundImage">
             <Grid textAlign="center">
-              <h1> Rock, Paper, Scissors</h1>
+              <h1 id="cy-title"> Rock, Paper, Scissors</h1>
             </Grid>
             <Grid textAlign="center">
               {!this.state.showUserVsCpu &&
