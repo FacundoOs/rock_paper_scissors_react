@@ -1,6 +1,10 @@
-describe("User can start the battle", () => {
+describe("User vs Cpu", () => {
   beforeEach(() => {
-    cy.visit("/");
+    cy.visit("/", {
+      onBeforeLoad: (x) => {
+        cy.stub(x.Math, "floor").returns(1);
+      },
+    });
     cy.get("#login").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
@@ -8,20 +12,11 @@ describe("User can start the battle", () => {
       cy.get("button").contains("Login").click();
     });
   });
-
-  it("User can see the result vs User2", () => {
-    cy.get("#cy-userUser").click();
-    cy.get('[alt="rock"]').click({ multiple: true, force: true });
-    cy.get("#cy-fight").click();
-    cy.get("#cy-winner").contains("The winner is: Tie");
-  });
-
-
   it("User can see the result vs Cpu", () => {
     cy.get("#cy-userCpu").click();
-    cy.stub(cpuOptions.Math, "floor").returns(0);
-
     cy.get('[alt="rock"]').click();
     cy.get("#cy-fight").click();
+    cy.get("#cy-cpuWeapon").contains("paper");
+    cy.get("#cy-winner").contains("The winner is : User 2");
   });
 });
