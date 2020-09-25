@@ -15,7 +15,7 @@ const LoginForm = ({ submitFormHandler }) => {
   icon='lock'
   iconPosition='left'
   label='Password'
-  type='password' name="password" type="password" id="password"
+  type='password' name="password"  id="password"
 />
 
 <Button id="submit" content='Login' primary />

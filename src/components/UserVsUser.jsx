@@ -3,7 +3,7 @@ import rock from "../assets/rock.png";
 import paper from "../assets/paper.jpg";
 import scissor from "../assets/scissor.jpg";
 import showWinner from "../modules/showWinner";
-import { Grid, Image, Button } from "semantic-ui-react";
+import { Grid, Button, Image } from "semantic-ui-react";
 
 class UserVsUser extends Component {
   state = {
@@ -43,7 +43,7 @@ class UserVsUser extends Component {
                 id="rock"
                 onClick={() => this.setState({ userWeapon: "rock" })}
               >
-                <img src={rock} alt="rock" width="100px" />
+                <Image src={rock} alt="rock" width="100px" />
               </button>
             </Grid.Row>
             <Grid.Row width={5}>
@@ -51,7 +51,7 @@ class UserVsUser extends Component {
                 id="paper"
                 onClick={() => this.setState({ userWeapon: "paper" })}
               >
-                <img src={paper} alt="paper" width="100px" />
+                <Image src={paper} alt="paper" width="100px" />
               </button>
             </Grid.Row>
             <Grid.Row width={5}>
@@ -59,7 +59,7 @@ class UserVsUser extends Component {
                 id="scissors"
                 onClick={() => this.setState({ userWeapon: "scissor" })}
               >
-                <img src={scissor} alt="scissor" width="100px" />
+                <Image src={scissor} alt="scissor" width="100px" />
               </button>
             </Grid.Row>
           </Grid.Column>
@@ -73,7 +73,7 @@ class UserVsUser extends Component {
                 id="rock"
                 onClick={() => this.setState({ user2Weapon: "rock" })}
               >
-                <img src={rock} alt="rock" width="100px" />
+                <Image src={rock} alt="rock" width="100px" />
               </button>
             </Grid.Row>
             <Grid.Row width={5}>
@@ -81,7 +81,7 @@ class UserVsUser extends Component {
                 id="paper"
                 onClick={() => this.setState({ user2Weapon: "paper" })}
               >
-                <img src={paper} alt="paper" width="100px" />
+                <Image src={paper} alt="paper" width="100px" />
               </button>
             </Grid.Row>
             <Grid.Row width={5}>
@@ -89,7 +89,7 @@ class UserVsUser extends Component {
                 id="scissors"
                 onClick={() => this.setState({ user2Weapon: "scissor" })}
               >
-                <img src={scissor} alt="scissor" width="100px" />
+                <Image src={scissor} alt="scissor" width="100px" />
               </button>
             </Grid.Row>
           </Grid.Column>

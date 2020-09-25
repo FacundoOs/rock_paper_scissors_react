@@ -66,7 +66,7 @@ class UserVsCpu extends Component {
                 id="scissors"
                 onClick={() => this.setState({ userWeapon: "scissor" })}
               >
-                <Image src={scissor} alt="scissor" size="small" size="small" />
+                <Image src={scissor} alt="scissor" size="small" />
               </button>
             </Grid.Row>
           </Grid.Column>
