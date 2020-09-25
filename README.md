@@ -5,7 +5,6 @@ A user story is an informal, general explanation of a software feature written f
 [Pivotaltracker link](https://www.pivotaltracker.com/n/projects/2466637)
 
 # ROCK, PAPER, SCISSOR
-About this PR:
 
 ## Explanation about the game:
 The project is based on the classic game "rock, paper or scissors".
